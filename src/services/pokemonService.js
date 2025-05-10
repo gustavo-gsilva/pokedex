@@ -5,20 +5,8 @@ export async function fetchPokemons(limit = 10) {
 
       const pokemons = data.results.map((pokemon, index) => ({
          name: pokemon.name,
-         image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
+         image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
       }))
-
-      // const detailedPokemons = await Promise.all(
-      //    data.results.map(async (pokemon) => {
-      //       const res = await fetch(pokemon.url);
-      //       const details = await res.json();
-
-      //       return {
-      //          name: pokemon.name,
-      //          image: details.sprites.front_default,
-      //       };
-      //    })
-      // );
 
       return pokemons;
    } catch (error) {

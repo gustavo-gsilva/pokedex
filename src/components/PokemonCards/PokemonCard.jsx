@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { fetchPokemons } from '../../services/pokemonService';
+
+const PokemonContainer = styled.ul`
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+`;
 
 function PokemonCards() {
    const [pokemons, setPokemons] = useState([]);
@@ -26,16 +32,14 @@ function PokemonCards() {
    }
 
    return (
-      <div>
-         <ul>
-            {pokemons.map((pokemon, index) => (
-               <li key={index}>
-                  <img src={pokemon.image} alt={pokemon.name} />
-                  <h3>{pokemon.name}</h3>
-               </li>
-            ))}
-         </ul>
-      </div>
+      <PokemonContainer>
+         {pokemons.map((pokemon, index) => (
+            <li key={index}>
+               <img src={pokemon.image} alt={pokemon.name} />
+               <h3>{pokemon.name}</h3>
+            </li>
+         ))}
+      </PokemonContainer>
    );
 };
 
