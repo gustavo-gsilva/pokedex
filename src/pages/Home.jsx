@@ -1,10 +1,11 @@
 import Header from "../components/Header/Header";
-import PokemonCards from "../components/PokemonCards/PokemonCard";
+import PokemonCards from "../components/PokemonCards/PokemonCards";
 import styled from "styled-components";
 
 const HomeContainer = styled.main`
-   background-color: ${({ theme }) => theme.background};
-   color: ${({ theme }) => (theme.background === "#1b1b1b" ? "#fff" : "#000")};
+   color: 
+   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #fce43b 0%, #ff6666 100%)" ?
+      "#000" : "#fff")};
 `;
 
 function Home() {

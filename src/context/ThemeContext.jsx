@@ -3,12 +3,12 @@ import { ThemeProvider } from "styled-components";
 
 const lightTheme = {
    iconFilter: "none",
-   background: "#fff"
+   background: "radial-gradient(circle at top, #fce43b 0%, #ff6666 100%)"
 };
 
 const darkTheme = {
    iconFilter: "invert(100%)",
-   background: "#1b1b1b"
+   background: "radial-gradient(circle at top, #d4a62c 0%, #2a0f2f 100%)"
 };
 
 export const CustomThemeContext = createContext();
