@@ -3,7 +3,7 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const HeaderContainer = styled.header`
    display: flex;
-   justify-content: center;
+   justify-content: space-around;
    align-items: center;
 `;
 

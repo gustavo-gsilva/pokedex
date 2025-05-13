@@ -1,25 +1,119 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CustomThemeContext } from "../../context/ThemeContext";
 
-const StyledIcon = styled.img`
-   height: 50px;
+const Theme = styled.div`
+   display: flex;
+   align-items: center;
+   gap: 10px;
    cursor: pointer;
-   position: absolute;
-   right: 1%;
+   padding: 5px 7px;
+   
+   &:hover {
+      background-color: rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+      border-radius: 5px;
+      transform: scale(1.04);
+   }
+`;
+
+const StyledIcon = styled.img`
+   height: 23px;
+   cursor: pointer;
    filter: ${({ theme }) => theme.iconFilter};
 `;
 
+const StyledThemeP = styled.p`
+   font-weight: 700;
+   font-size: 1.5rem;
+`;
+
+
+const ThemeContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   background-color: rgba(255, 255, 255, 0.6);
+   width: 115px;
+   height: 103px;
+   position: absolute;
+   border-radius: 5px;
+   padding: 10px;
+   margin-top: 6px;
+   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+`;
+
+const IconContainer = styled.div`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   cursor: pointer;
+   padding: 8px;
+   border-radius: 7px;
+
+   &:hover {
+      background-color: #ffc266;
+      transform: scale(1.04);
+   }
+`;
+
+const SunIcon = styled.img`
+   height: 23px;
+`;
+
+const MoonIcon = styled.img`
+   height: 23px;
+`;
+
+const LightDarkText = styled.p`
+   font-size: 1.5rem;
+   font-weight: 600;
+`;
+
 function ThemeToggle() {
-   const { toggleTheme } = useContext(CustomThemeContext);
+   const { theme, setCustomTheme } = useContext(CustomThemeContext)
+   const [themeVisible, setThemeVisible] = useState(false);
+
+   const handleToggleVisibility = () => {
+      setThemeVisible(prev => !prev);
+   };
+
+   const handleThemeChange = (newTheme) => {
+      setCustomTheme(newTheme);
+      setThemeVisible(false);
+   };
+
+   const iconSrc = theme === "light"
+      ? "../../../public/assets/images/sun-icon.png"
+      : "../../../public/assets/images/moon-icon.png"
 
    return (
-      <div>
-         <StyledIcon
-            onClick={toggleTheme}
-            src="../../../public/assets/images/theme-change-icon.png">
-         </StyledIcon>
-      </div>
+      <>
+         <div>
+            <Theme onClick={handleToggleVisibility}>
+               <StyledIcon src={iconSrc} />
+
+               <StyledThemeP>Theme</StyledThemeP>
+            </Theme>
+
+            {themeVisible && (
+               <ThemeContainer>
+                  <IconContainer onClick={() => handleThemeChange("light")}>
+                     <SunIcon src="../../../public/assets/images/sun-icon.png" />
+
+                     <LightDarkText>Light</LightDarkText>
+                  </IconContainer>
+
+                  <IconContainer onClick={() => handleThemeChange("dark")}>
+                     <MoonIcon src="../../../public/assets/images/moon-icon.png" />
+
+                     <LightDarkText>Dark</LightDarkText>
+                  </IconContainer>
+               </ThemeContainer>
+            )}
+         </div>
+      </>
    );
 };
 
