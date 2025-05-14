@@ -41,6 +41,16 @@ const ThemeContainer = styled.div`
    padding: 10px;
    margin-top: 6px;
    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+   opacity: 0;
+   transform: translateY(-10px);
+   animation: fadeIn 0.3s ease forwards;
+
+   @keyframes fadeIn {
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
 `;
 
 const IconContainer = styled.div`
@@ -51,10 +61,12 @@ const IconContainer = styled.div`
    cursor: pointer;
    padding: 8px;
    border-radius: 7px;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
    &:hover {
       background-color: #ffc266;
-      transform: scale(1.04);
+      transform: scale(1.03);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
    }
 `;
 
