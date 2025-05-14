@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
    }
 
    html {
+      height: 100vh;
       font-family: 'Roboto', sans-serif;
       font-size: 62.5%;
    }

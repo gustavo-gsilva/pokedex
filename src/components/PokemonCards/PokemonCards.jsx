@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { fetchPokemons } from '../../services/pokemonService';
 
-const PokemonContainer = styled.div`
-   display: flex;
-   justify-content: center;
-`;
-
 const PokemonList = styled.ul`
    display: grid;
-   grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(5, 1fr);
+   gap: 50px;
 `;
 
 const PokemonItem = styled.li`
+`;
+
+const PokemonImage = styled.img`
+   width: 200px;
 `;
 
 function PokemonCards() {
@@ -40,16 +40,14 @@ function PokemonCards() {
    }
 
    return (
-      <PokemonContainer>
-         <PokemonList>
-            {pokemons.map((pokemon, index) => (
-               <PokemonItem key={index}>
-                  <img src={pokemon.image} alt={pokemon.name} />
-                  <h3>{pokemon.name}</h3>
-               </PokemonItem>
-            ))}
-         </PokemonList>
-      </PokemonContainer>
+      <PokemonList>
+         {pokemons.map((pokemon, index) => (
+            <PokemonItem key={index}>
+               <PokemonImage src={pokemon.image} alt={pokemon.name} />
+               <h3>{pokemon.name}</h3>
+            </PokemonItem>
+         ))}
+      </PokemonList>
    );
 };
 

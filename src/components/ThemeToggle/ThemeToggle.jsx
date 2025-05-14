@@ -7,13 +7,13 @@ const Theme = styled.div`
    align-items: center;
    gap: 10px;
    cursor: pointer;
-   padding: 5px 7px;
-   
+   background-color: transparent;
+   filter: drop-shadow(0 0 6px #0ff) drop-shadow(0 0 12px #0ff);
+
    &:hover {
-      background-color: rgba(255, 255, 255, 0.6);
       transition: all 0.3s ease;
-      border-radius: 5px;
       transform: scale(1.04);
+      filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 20px #0ff);
    }
 `;
 
@@ -26,6 +26,10 @@ const StyledIcon = styled.img`
 const StyledThemeP = styled.p`
    font-weight: 700;
    font-size: 1.5rem;
+
+   color: 
+   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)" ?
+      "#000" : "#fff")};
 `;
 
 

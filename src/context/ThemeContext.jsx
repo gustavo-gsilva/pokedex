@@ -2,11 +2,12 @@ import { createContext, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 const lightTheme = {
-   background: "radial-gradient(circle at top, #fce43b 0%, #ff6666 100%)"
+   background: "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)"
 };
 
 const darkTheme = {
-   background: "radial-gradient(circle at top, #d4a62c 0%, #2a0f2f 100%)"
+   background: "radial-gradient(circle at top, #263238 0%, #37474F 100%)",
+   iconFilter: "invert(100%)"
 };
 
 export const CustomThemeContext = createContext();

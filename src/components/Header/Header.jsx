@@ -3,19 +3,23 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const HeaderContainer = styled.header`
    display: flex;
-   justify-content: space-around;
+   justify-content: space-between;
    align-items: center;
+   height: 100px;
+   padding: 0 70px;
 `;
 
 const StyledLogo = styled.img`
-   width: 410px;
-   margin-top: 25px;
+   width: 190px;
+   filter: drop-shadow(0 0 4px #0ff) drop-shadow(0 0 5px #0ff);
 `;
 
 function Header() {
    return (
       <HeaderContainer>
-         <StyledLogo src="../../../public/assets/images/logo.svg" />
+         <a href="#" onClick={(e) => e.preventDefault()}>
+            <StyledLogo src="../../../public/assets/images/logo.svg" />
+         </a>
          <ThemeToggle />
       </HeaderContainer>
    );
