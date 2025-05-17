@@ -10,7 +10,7 @@ const HeaderContainer = styled.header`
 `;
 
 const StyledLogo = styled.img`
-   width: 190px;
+   width: 180px;
    filter: drop-shadow(0 0 4px #0ff) drop-shadow(0 0 5px #0ff);
 `;
 
@@ -18,7 +18,7 @@ function Header() {
    return (
       <HeaderContainer>
          <a href="#" onClick={(e) => e.preventDefault()}>
-            <StyledLogo src="../../../public/assets/images/logo.svg" />
+            <StyledLogo src="/assets/images/logo.svg" alt="Pokédex Logo" />
          </a>
          <ThemeToggle />
       </HeaderContainer>

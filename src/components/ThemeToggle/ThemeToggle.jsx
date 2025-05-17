@@ -37,7 +37,7 @@ const ThemeContainer = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
-   background-color: rgba(255, 255, 255, 0.6);
+   background: ${({ theme }) => theme.backgroundPokemonList};
    width: 115px;
    height: 103px;
    position: absolute;
@@ -48,6 +48,10 @@ const ThemeContainer = styled.div`
    opacity: 0;
    transform: translateY(-10px);
    animation: fadeIn 0.3s ease forwards;
+
+   color: 
+   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)" ?
+      "#000" : "#fff")};
 
    @keyframes fadeIn {
       to {
@@ -68,7 +72,7 @@ const IconContainer = styled.div`
    transition: transform 0.2s ease, box-shadow 0.2s ease;
 
    &:hover {
-      background-color: #ffc266;
+      background: ${({ theme }) => theme.backgroundPokemonImage};
       transform: scale(1.03);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
    }
@@ -76,10 +80,12 @@ const IconContainer = styled.div`
 
 const SunIcon = styled.img`
    height: 23px;
+   filter: ${({ theme }) => theme.iconFilter};
 `;
 
 const MoonIcon = styled.img`
    height: 23px;
+   filter: ${({ theme }) => theme.iconFilter};
 `;
 
 const LightDarkText = styled.p`
@@ -101,8 +107,8 @@ function ThemeToggle() {
    };
 
    const iconSrc = theme === "light"
-      ? "../../../public/assets/images/sun-icon.png"
-      : "../../../public/assets/images/moon-icon.png"
+      ? "/assets/images/sun-icon.png"
+      : "/assets/images/moon-icon.png"
 
    return (
       <>
@@ -116,13 +122,13 @@ function ThemeToggle() {
             {themeVisible && (
                <ThemeContainer>
                   <IconContainer onClick={() => handleThemeChange("light")}>
-                     <SunIcon src="../../../public/assets/images/sun-icon.png" />
+                     <SunIcon src="/assets/images/sun-icon.png" alt="Sun Icon" />
 
                      <LightDarkText>Light</LightDarkText>
                   </IconContainer>
 
                   <IconContainer onClick={() => handleThemeChange("dark")}>
-                     <MoonIcon src="../../../public/assets/images/moon-icon.png" />
+                     <MoonIcon src="/assets/images/moon-icon.png" alt="Moon Icon" />
 
                      <LightDarkText>Dark</LightDarkText>
                   </IconContainer>

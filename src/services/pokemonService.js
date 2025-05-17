@@ -1,12 +1,23 @@
-export async function fetchPokemons(limit = 10) {
+export async function fetchPokemons(limit = 10, offset = 0) {
    try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
       const data = await response.json();
 
-      const pokemons = data.results.map((pokemon, index) => ({
-         name: pokemon.name,
-         image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`,
-      }))
+      const pokemons = await Promise.all(
+         data.results.map(async (pokemon, index) => {
+            const id = offset + index + 1;
+
+            const detailsRes = await fetch(pokemon.url);
+            const details = await detailsRes.json();
+
+            return {
+               id: id,
+               name: pokemon.name,
+               image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+               type: details.types.map(t => t.type.name).join(', '),
+            }
+         })
+      );
 
       return pokemons;
    } catch (error) {

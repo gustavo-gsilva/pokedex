@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
    html {
       height: 100vh;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 62.5%;
    }
 
