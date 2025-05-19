@@ -3,15 +3,16 @@ import { ThemeProvider } from "styled-components";
 
 const lightTheme = {
    background: "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)",
-   backgroundPokemonList: "radial-gradient(circle at top, #ECEFF1 0%, #B0BEC5 70%)",
-   backgroundPokemonImage: "#FFFFFFCC"
+   backgroundPokemonList: "radial-gradient(circle at top, #CFD8DC 0%, #90A4AE 70%)",
+   backgroundPokemonImage: "radial-gradient(circle at top, #F1F4F6 0%, #C1CDD2 70%)"
 };
 
 const darkTheme = {
    background: "radial-gradient(circle at top, #263238 0%, #37474F 100%)",
    iconFilter: "invert(100%)",
-   backgroundPokemonList: "#121212",
-   backgroundPokemonImage: "#2A2A2A"
+   borderIcon: "#fff",
+   backgroundPokemonList: "radial-gradient(circle at top, #2A2A2A 0%, #121212 80%)",
+   backgroundPokemonImage: "radial-gradient(circle at top, #3A3A3A 0%, #121212 80%)"
 };
 
 export const CustomThemeContext = createContext();

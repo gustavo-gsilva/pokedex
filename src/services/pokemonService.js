@@ -14,7 +14,6 @@ export async function fetchPokemons(limit = 10, offset = 0) {
                id: id,
                name: pokemon.name,
                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
-               type: details.types.map(t => t.type.name).join(', '),
             }
          })
       );

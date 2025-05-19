@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { fetchPokemons } from '../../services/pokemonService';
 
 const ContainerPokemon = styled.div`
@@ -68,9 +69,38 @@ const Button = styled.button`
    }
 `;
 
+const LoadingScreen = styled.div`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background: ${({ theme }) => theme.backgroundPokemonList};
+   font-size: 1.5rem;
+`;
+
+const rotate = keyframes`
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
+`;
+
+const LoadingScreenIcon = styled.img`
+   width: 60px;
+   animation: ${rotate} 2s linear infinite;
+   filter: ${({ theme }) => theme.iconFilter};
+`;
+
 function PokemonCards() {
    const [pokemons, setPokemons] = useState([]);
    const [loading, setLoading] = useState(true);
+   const [loadingScreen, setLoadingScreen] = useState(true);
    const [offset, setOffset] = useState(0);
 
    const LIMIT = 10;
@@ -81,8 +111,11 @@ function PokemonCards() {
 
    async function loadInitialPokemons() {
       setLoading(true);
+      setLoadingScreen(true);
 
       try {
+         await new Promise(resolve => setTimeout(resolve, 1100));
+
          const initialPokemons = await fetchPokemons(LIMIT, 0);
 
          setPokemons(initialPokemons);
@@ -91,6 +124,7 @@ function PokemonCards() {
          console.error('Erro ao buscar os Pokémons:', error);
       } finally {
          setLoading(false);
+         setLoadingScreen(false);
       };
    };
 
@@ -109,24 +143,40 @@ function PokemonCards() {
       }
    };
 
+   if (loadingScreen) {
+      return (
+         <LoadingScreen>
+            <LoadingScreenIcon src='/assets/images/pokebola.png' alt='Pokébola Ícone' />
+         </LoadingScreen>
+      )
+   }
+
    return (
       <ContainerPokemon>
          <PokemonList>
-            {pokemons.map((pokemon, index) => (
-               <PokemonItem key={index}>
-                  <PokemonImage src={pokemon.image} alt={pokemon.name} />
+            {
+               pokemons.map((pokemon, index) => (
+                  <PokemonItem>
+                     <Link
+                        key={index}
+                        to={`/pokemon/${pokemon.name}`}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                     >
+                        <PokemonImage src={pokemon.image} alt={pokemon.name} />
+                     </Link>
 
-                  <PokemonNumber>N° {String(pokemon.id).padStart(4, "0")}</PokemonNumber>
+                     <PokemonNumber>N° {String(pokemon.id).padStart(4, "0")}</PokemonNumber>
 
-                  <PokemonName>{pokemon.name}</PokemonName>
-               </PokemonItem>
-            ))}
+                     <PokemonName>{pokemon.name}</PokemonName>
+                  </PokemonItem>
+               ))
+            }
          </PokemonList>
 
          <Button onClick={loadMorePokemons} disabled={loading}>
-            {loading ? "Loading..." : "Load More"}
+            {loading ? "Carregando..." : "Carregar Mais"}
          </Button>
-      </ContainerPokemon>
+      </ContainerPokemon >
    );
 };
 
