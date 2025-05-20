@@ -55,18 +55,25 @@ const Button = styled.button`
    font-size: 1.5rem;
    font-family: 'IBM Plex Sans', sans-serif;
    font-weight: 600;
-   filter: drop-shadow(0 0 2px #0ff) drop-shadow(0 0 2px #0ff);
-   background: ${({ theme }) => theme.backgroundPokemonImage};
-
-   color: 
-   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)" ?
-      "#000" : "#fff")};
+   background: ${({ theme }) => theme.backgroundPokemonList};
+   color: ${({ theme }) => theme.textColor};
+   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 
       &:hover {
       transition: all 0.3s ease;
       transform: scale(1.02);
-      filter: drop-shadow(0 0 3px #0ff) drop-shadow(0 0 3px #0ff);
    }
+`;
+
+const slideRight = keyframes`
+   from {
+      transform: translateX(-70px);
+      opacity: 0;
+}
+   to {
+      transform: translateX(0);
+      opacity: 1;
+}
 `;
 
 const LoadingScreen = styled.div`
@@ -80,20 +87,30 @@ const LoadingScreen = styled.div`
    height: 100vh;
    background: ${({ theme }) => theme.backgroundPokemonList};
    font-size: 1.5rem;
+   animation: ${slideRight} 0.3s ease forwards;
 `;
 
-const rotate = keyframes`
-   from {
-      transform: rotate(0deg);
+const jump = keyframes`
+   0% {
+      transform: translateY(0);
    }
-   to {
-      transform: rotate(360deg);
+   30% {
+      transform: translateY(-20px);
+   }
+   50% {
+      transform: translateY(0);
+   }
+   70% {
+      transform: translateY(-10px);
+   }
+   100% {
+      transform: translateY(0);
    }
 `;
 
 const LoadingScreenIcon = styled.img`
    width: 60px;
-   animation: ${rotate} 2s linear infinite;
+   animation: ${jump} 1s ease-in-out infinite;
    filter: ${({ theme }) => theme.iconFilter};
 `;
 

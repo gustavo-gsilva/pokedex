@@ -11,7 +11,6 @@ const HeaderContainer = styled.header`
 
 const StyledLogo = styled.img`
    width: 180px;
-   filter: drop-shadow(0 0 4px #0ff) drop-shadow(0 0 5px #0ff);
 `;
 
 function Header() {

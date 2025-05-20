@@ -8,28 +8,16 @@ const Theme = styled.div`
    gap: 10px;
    cursor: pointer;
    background-color: transparent;
-   filter: drop-shadow(0 0 6px #0ff) drop-shadow(0 0 12px #0ff);
 
    &:hover {
       transition: all 0.3s ease;
       transform: scale(1.04);
-      filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 20px #0ff);
    }
-`;
-
-const StyledIcon = styled.img`
-   height: 23px;
-   cursor: pointer;
-   filter: ${({ theme }) => theme.iconFilter};
 `;
 
 const StyledThemeP = styled.p`
    font-weight: 700;
    font-size: 1.5rem;
-
-   color: 
-   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)" ?
-      "#000" : "#fff")};
 `;
 
 
@@ -48,10 +36,6 @@ const ThemeContainer = styled.div`
    opacity: 0;
    transform: translateY(-10px);
    animation: fadeIn 0.3s ease forwards;
-
-   color: 
-   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)" ?
-      "#000" : "#fff")};
 
    @keyframes fadeIn {
       to {
@@ -73,19 +57,17 @@ const IconContainer = styled.div`
 
    &:hover {
       background: ${({ theme }) => theme.backgroundPokemonImage};
-      transform: scale(1.03);
+      transform: scale(1.02);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
    }
 `;
 
-const SunIcon = styled.img`
-   height: 23px;
-   filter: ${({ theme }) => theme.iconFilter};
+const SunIcon = styled.i`
+   font-size: 2.3rem;
 `;
 
-const MoonIcon = styled.img`
-   height: 23px;
-   filter: ${({ theme }) => theme.iconFilter};
+const MoonIcon = styled.i`
+   font-size: 2.3rem;
 `;
 
 const LightDarkText = styled.p`
@@ -106,29 +88,28 @@ function ThemeToggle() {
       setThemeVisible(false);
    };
 
-   const iconSrc = theme === "light"
-      ? "/assets/images/sun-icon.png"
-      : "/assets/images/moon-icon.png"
+   const ThemeIcon = theme === "light"
+      ? <SunIcon className="fa-solid fa-sun" />
+      : <MoonIcon className="fa-solid fa-moon" />
 
    return (
       <>
          <div>
             <Theme onClick={handleToggleVisibility}>
-               <StyledIcon src={iconSrc} />
-
+               {ThemeIcon}
                <StyledThemeP>Theme</StyledThemeP>
             </Theme>
 
             {themeVisible && (
                <ThemeContainer>
                   <IconContainer onClick={() => handleThemeChange("light")}>
-                     <SunIcon src="/assets/images/sun-icon.png" alt="Sun Icon" />
+                     <SunIcon className="fa-solid fa-sun" />
 
                      <LightDarkText>Light</LightDarkText>
                   </IconContainer>
 
                   <IconContainer onClick={() => handleThemeChange("dark")}>
-                     <MoonIcon src="/assets/images/moon-icon.png" alt="Moon Icon" />
+                     <MoonIcon className="fa-solid fa-moon" />
 
                      <LightDarkText>Dark</LightDarkText>
                   </IconContainer>

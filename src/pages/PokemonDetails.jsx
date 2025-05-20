@@ -9,10 +9,6 @@ const MainContainer = styled.div`
    flex-direction: column;
    align-items: center;
    height: 79vh;
-
-   color: 
-   ${({ theme }) => (theme.background === "radial-gradient(circle at top, #E8F5E9 0%, #A5D6A7 70%)" ?
-      "#000" : "#fff")};
 `;
 
 const ContentWrapper = styled.div`
@@ -71,6 +67,7 @@ const PokemonImage = styled.img`
    width: 300px;
    background: ${({ theme }) => theme.backgroundPokemonImage};
    border-radius: 13px;
+   padding: 13px;
 `;
 
 const PokemonInfo = styled.div`
@@ -109,6 +106,17 @@ const Move = styled.li`
    font-size: 1.4rem;
 `;
 
+const slideRight = keyframes`
+   from {
+      transform: translateX(-70px);
+      opacity: 0;
+}
+   to {
+      transform: translateX(0);
+      opacity: 1;
+}
+`;
+
 const LoadingScreen = styled.div`
    display: flex;
    justify-content: center;
@@ -118,23 +126,32 @@ const LoadingScreen = styled.div`
    left: 0;
    width: 100vw;
    height: 100vh;
-   background-color: aqua;
    font-size: 1.5rem;
    background: ${({ theme }) => theme.backgroundPokemonList};
+   animation: ${slideRight} 0.3s ease forwards;
 `;
 
-const rotate = keyframes`
-   from {
-      transform: rotate(0deg);
+const jump = keyframes`
+   0% {
+      transform: translateY(0);
    }
-   to {
-      transform: rotate(360deg);
+   30% {
+      transform: translateY(-20px);
+   }
+   50% {
+      transform: translateY(0);
+   }
+   70% {
+      transform: translateY(-10px);
+   }
+   100% {
+      transform: translateY(0);
    }
 `;
 
 const LoadingScreenIcon = styled.img`
    width: 60px;
-   animation: ${rotate} 2s linear infinite;
+   animation: ${jump} 1s ease-in-out infinite;
    filter: ${({ theme }) => theme.iconFilter};
 `;
 

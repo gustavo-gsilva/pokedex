@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
    body {
       background: ${({ theme }) => theme.background};
+      color: ${({ theme }) => theme.textColor};
    }
 `;
 
