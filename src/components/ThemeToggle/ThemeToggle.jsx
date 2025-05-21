@@ -18,6 +18,12 @@ const Theme = styled.div`
 const StyledThemeP = styled.p`
    font-weight: 700;
    font-size: 1.5rem;
+
+   @media (max-width: 950px) {
+
+      font-size: 2rem;
+
+   }
 `;
 
 
@@ -35,6 +41,7 @@ const ThemeContainer = styled.div`
    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
    opacity: 0;
    transform: translateY(-10px);
+   z-index: 10;
    animation: fadeIn 0.3s ease forwards;
 
    @keyframes fadeIn {
@@ -42,6 +49,13 @@ const ThemeContainer = styled.div`
          opacity: 1;
          transform: translateY(0);
       }
+   }
+
+   @media (max-width: 950px) {
+
+      width: 130px;
+      height: 118px;
+
    }
 `;
 
@@ -60,19 +74,43 @@ const IconContainer = styled.div`
       transform: scale(1.02);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
    }
+
+   @media (max-width: 950px) {
+
+      padding: 10px;
+
+   }
 `;
 
 const SunIcon = styled.i`
    font-size: 2.3rem;
+
+   @media (max-width: 950px) {
+
+      font-size: 2.8rem;
+
+   }
 `;
 
 const MoonIcon = styled.i`
    font-size: 2.3rem;
+
+   @media (max-width: 950px) {
+
+      font-size: 2.8rem;
+
+   }
 `;
 
 const LightDarkText = styled.p`
    font-size: 1.5rem;
    font-weight: 600;
+
+   @media (max-width: 950px) {
+
+      font-size: 2rem;
+
+   }
 `;
 
 function ThemeToggle() {

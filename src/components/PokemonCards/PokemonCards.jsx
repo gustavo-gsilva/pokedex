@@ -5,6 +5,12 @@ import { fetchPokemons } from '../../services/pokemonService';
 
 const ContainerPokemon = styled.div`
    padding-bottom: 30px;
+
+   @media (max-width: 830px) {
+
+      padding-bottom: 50px;
+
+   }
 `;
 
 const PokemonList = styled.ul`
@@ -14,6 +20,30 @@ const PokemonList = styled.ul`
    background: ${({ theme }) => theme.backgroundPokemonList};
    border-radius: 13px;
    padding: 25px;
+
+   @media (max-width: 950px) {
+
+      grid-template-columns: repeat(4, 1fr);
+
+   }
+
+   @media (max-width: 830px) {
+
+      grid-template-columns: repeat(3, 1fr);
+
+   }
+
+   @media (max-width: 690px) {
+
+      grid-template-columns: repeat(2, 1fr);
+
+   }
+
+   @media (max-width: 450px) {
+
+      grid-template-columns: repeat(1, 1fr);
+
+   }
 `;
 
 const PokemonItem = styled.li`
@@ -163,7 +193,7 @@ function PokemonCards() {
    if (loadingScreen) {
       return (
          <LoadingScreen>
-            <LoadingScreenIcon src='/assets/images/pokebola.png' alt='Pokébola Ícone' />
+            <LoadingScreenIcon src='/assets/images/pokebola-loading-screen.png' alt='Pokébola Ícone' />
          </LoadingScreen>
       )
    }

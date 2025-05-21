@@ -3,7 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyles";
 import Home from "./pages/Home";
-import PokemonDetails from "./pages/PokemonDetails";
+import PokemonDetailsPage from './pages/PokemonDetailsPage';
 
 function App() {
    return (
@@ -11,7 +11,7 @@ function App() {
          <GlobalStyle />
          <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/pokemon/:name" element={<PokemonDetails />} />
+            <Route path="/pokemon/:name" element={<PokemonDetailsPage />} />
          </Routes>
       </BrowserRouter>
    )

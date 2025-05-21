@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
-import Header from "../components/Header/Header";
 
 const MainContainer = styled.div`
    display: flex;
@@ -9,6 +8,14 @@ const MainContainer = styled.div`
    flex-direction: column;
    align-items: center;
    height: 79vh;
+   padding-bottom: 30px;
+
+   @media (max-width: 1190px) {
+
+      height: 100vh;
+      padding-bottom: 0;
+
+   }
 `;
 
 const ContentWrapper = styled.div`
@@ -22,6 +29,13 @@ const ContentWrapper = styled.div`
    height: 65dvh;
    border-radius: 13px;
    position: relative;
+
+   @media (max-width: 1190px) {
+
+      width: 90vw;
+      height: 100vh;
+
+   }
 `;
 
 const PokemonHeader = styled.div`
@@ -61,23 +75,70 @@ const PokemonDetails = styled.div`
    display: flex;
    align-items: center;
    gap: 35px;
+
+   @media (max-width: 1190px) {
+
+      flex-direction: column;
+
+   }
 `;
 
 const PokemonImage = styled.img`
-   width: 300px;
+   width: 20vw;
+   height: 42vh;
+   object-fit: contain;
    background: ${({ theme }) => theme.backgroundPokemonImage};
    border-radius: 13px;
    padding: 13px;
+
+   @media (max-width: 1190px) {
+
+      width: 35vw;
+      height: 45vh;
+
+   }
+
+   @media (max-width: 700px) {
+
+      width: 45vw;
+
+   }
+
+   @media (max-width: 550px) {
+
+      width: 65vw;
+
+   }
 `;
 
 const PokemonInfo = styled.div`
    display: flex;
-   gap: 50px;
+   justify-content: space-between;
    background: ${({ theme }) => theme.backgroundPokemonImage};
    border-radius: 13px;
-   width: 356px;
-   height: 220px;
-   padding: 16px 20px;
+   width: 22vw;
+   height: 30vh;
+   padding: 18px 20px;
+
+   @media (max-width: 1190px) {
+
+      justify-content: space-around;
+      width: 55vw;
+
+   }
+
+   @media (max-width: 700px) {
+
+      justify-content: space-between;
+      width: 60vw;
+
+   }
+
+   @media (max-width: 550px) {
+
+      width: 75vw;
+
+   }
 `;
 
 const InfoBlock = styled.div`
@@ -199,7 +260,7 @@ function PokemonsDetails() {
    if (loading) {
       return (
          <LoadingScreen>
-            <LoadingScreenIcon src='/assets/images/pokebola.png' alt='Pokébola Ícone' />
+            <LoadingScreenIcon src='/assets/images/pokebola-loading-screen.png' alt='Pokébola Ícone' />
          </LoadingScreen>
       )
    }
@@ -210,7 +271,6 @@ function PokemonsDetails() {
 
    return (
       <>
-         <Header />
          <MainContainer>
             <ContentWrapper>
                <PokemonHeader>
