@@ -10,10 +10,10 @@ const MainContainer = styled.div`
    height: 79vh;
    padding-bottom: 30px;
 
-   @media (max-width: 1190px) {
+   @media (max-width: 1320px) {
 
       height: 100vh;
-      padding-bottom: 0;
+      padding-bottom: 40px;
 
    }
 `;
@@ -30,7 +30,7 @@ const ContentWrapper = styled.div`
    border-radius: 13px;
    position: relative;
 
-   @media (max-width: 1190px) {
+   @media (max-width: 1320px) {
 
       width: 90vw;
       height: 100vh;
@@ -76,7 +76,7 @@ const PokemonDetails = styled.div`
    align-items: center;
    gap: 35px;
 
-   @media (max-width: 1190px) {
+   @media (max-width: 1320px) {
 
       flex-direction: column;
 
@@ -91,7 +91,7 @@ const PokemonImage = styled.img`
    border-radius: 13px;
    padding: 13px;
 
-   @media (max-width: 1190px) {
+   @media (max-width: 1320px) {
 
       width: 35vw;
       height: 45vh;
@@ -117,10 +117,10 @@ const PokemonInfo = styled.div`
    background: ${({ theme }) => theme.backgroundPokemonImage};
    border-radius: 13px;
    width: 22vw;
-   height: 30vh;
+   height: 32vh;
    padding: 18px 20px;
 
-   @media (max-width: 1190px) {
+   @media (max-width: 1320px) {
 
       justify-content: space-around;
       width: 55vw;
@@ -155,12 +155,17 @@ const InfoValue = styled.p`
    font-size: 1.4rem;
 `;
 
+const InfoValueAbility = styled.p`
+   font-size: 1.4rem;
+   overflow-y: scroll;
+   width: 110px;
+   height: 50px;
+   padding-top: 5px;
+`;
+
 const MoveList = styled.ul`
    overflow-y: scroll;
-
-   &::-webkit-scrollbar {
-      display: none;
-}
+   height: 50px;
 `;
 
 const Move = styled.li`
@@ -237,6 +242,21 @@ function PokemonsDetails() {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             const data = await response.json();
 
+            const abilityDescriptions = await Promise.all(
+               data.abilities.slice(0, 1).map(async (a) => {
+                  const res = await fetch(a.ability.url);
+                  const abilityData = await res.json();
+
+                  const entry = abilityData.effect_entries.find(e => e.language.name === "pt") ||
+                     abilityData.effect_entries.find(e => e.language.name === "en");
+
+                  return {
+                     name: a.ability.name,
+                     description: entry ? entry.effect : "Sem descrição disponível."
+                  };
+               })
+            );
+
             setPokemon({
                id: data.id,
                name: data.name,
@@ -244,7 +264,7 @@ function PokemonsDetails() {
                types: data.types.map(t => t.type.name).join(", "),
                height: data.height,
                weight: data.weight,
-               abilities: data.abilities.map(a => a.ability.name).join(", "),
+               abilities: abilityDescriptions,
                moves: data.moves.map(m => m.move.name),
             });
          } catch (error) {
@@ -298,7 +318,14 @@ function PokemonsDetails() {
 
                      <InfoBlock>
                         <InfoTitle>Habilidades</InfoTitle>
-                        <InfoValue>{pokemon.abilities}</InfoValue>
+
+                        {pokemon.abilities.map((ability, index) => (
+                           <InfoValue
+                              key={index}>
+                              <strong>{ability.name}</strong>
+                              <InfoValueAbility>{ability.description}</InfoValueAbility>
+                           </InfoValue>
+                        ))}
 
                         <InfoTitle>Movimentos</InfoTitle>
 
