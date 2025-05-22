@@ -12,7 +12,7 @@ const MainContainer = styled.div`
 
    @media (max-width: 1320px) {
 
-      height: 100vh;
+      height: 110vh;
       padding-bottom: 40px;
 
    }
@@ -33,7 +33,7 @@ const ContentWrapper = styled.div`
    @media (max-width: 1320px) {
 
       width: 90vw;
-      height: 100vh;
+      height: 110vh;
 
    }
 `;
