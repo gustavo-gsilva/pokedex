@@ -280,7 +280,7 @@ function PokemonsDetails() {
    if (loading) {
       return (
          <LoadingScreen>
-            <LoadingScreenIcon src='/assets/images/pokebola-loading-screen.png' alt='Pokébola Ícone' />
+            <LoadingScreenIcon src='/pokedex/assets/images/pokebola-loading-screen.png' alt='Pokébola Ícone' />
          </LoadingScreen>
       )
    }

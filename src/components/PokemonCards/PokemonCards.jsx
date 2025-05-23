@@ -193,7 +193,7 @@ function PokemonCards() {
    if (loadingScreen) {
       return (
          <LoadingScreen>
-            <LoadingScreenIcon src='/assets/images/pokebola-loading-screen.png' alt='Pokébola Ícone' />
+            <LoadingScreenIcon src='/pokedex/assets/images/pokebola-loading-screen.png' alt='Pokébola Ícone' />
          </LoadingScreen>
       )
    }

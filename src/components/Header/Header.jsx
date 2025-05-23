@@ -37,10 +37,10 @@ function Header() {
          <a href="#" onClick={(e) => e.preventDefault()}>
             <picture>
                <source
-                  srcSet="/assets/images/pokebola-logo.png"
+                  srcSet="/pokedex/assets/images/pokebola-logo.png"
                   media="(max-width: 500px)"
                />
-               <StyledLogo src="/assets/images/logo.svg" alt="Pokédex Logo" />
+               <StyledLogo src="/pokedex/assets/images/logo.svg" alt="Pokédex Logo" />
             </picture>
          </a>
          <ThemeToggle />
